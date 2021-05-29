@@ -108,4 +108,8 @@ export class CurdComponent implements OnInit {
     this.name.nativeElement.value = this.products[index].name;
     this.price.nativeElement.value = this.products[index].price;
   }
+
+  onAllDeleteProduct(name:any){
+    this.products.splice(name);
+  }
 }

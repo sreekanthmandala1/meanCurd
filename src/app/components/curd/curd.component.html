@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6 mb-3">
+    <div class="col-md-4 mb-3">
       <h3 style="text-align:center">Add Products</h3>
       <div class="form">
         <div class="form-floating mb-3 form-group">
@@ -27,46 +27,73 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <button class="btn btn-primary mx-3" (click)="onAddProduct(id,name,price)">{{editMode? 'Update': 'Add'}}</button>
+            <button class="btn btn-primary mx-3" (click)="onAddProduct(id,name,price)">{{editMode? 'Update':
+              'Add'}}</button>
             <button class="btn btn-info mx-3" (click)="onSaveProduct()">save</button>
             <button class="btn btn-success mx-3" (click)="onFetchProduct()">Fetch</button>
           </div>
         </div>
       </div>
-      <h2>{{dataTitle | async}}</h2>
+      <!-- <h2>{{dataTitle | async}}</h2> -->
     </div>
-    <div class="col-md-6" style="text-align:center">
-      <table class="table">
-        <thead style="background-color: rgb(253, 175, 7);color:white">
+    <div class="col-md-8">
+      <div class="row" style="background-color: rgb(253, 175, 7);color:white;text-align:center;width:100%" id="thead">
+        <div class="col-1">#</div>
+        <div class="col-2">Id</div>
+        <div class="col-3">Name</div>
+        <div class="col-2 ">Price</div>
+        <div class="col-2 ">Edit</div>
+        <div class="col-2 ">Delete</div>
+      </div>
+      <!-- <table class="table">
+        <thead style="background-color: rgb(253, 175, 7);color:white" id="thead">
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Id</th>
-            <th scope="col">Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">Edit</th>
-            <th scope="col">Delete</th>
+            <th scope="col" style="width:50px">#</th>
+            <th scope="col" style="width:100px">Id</th>
+            <th scope="col" style="width:300px">Name</th>
+            <th scope="col" style="width:350px">Price</th>
+            <th scope="col" style="width:70px">Edit</th>
+            <th scope="col" style="width:70px">Delete</th>
           </tr>
         </thead>
-        <tbody *ngIf="!fetching">
-          <tr *ngFor="let product of products; index as i">
-            <th>{{i+1}}.</th>
-            <td>{{product.id}}</td>
-            <td>{{product.name}}</td>
-            <td>{{product.price}}</td>
-            <td><a class="text-primary" style="cursor:pointer" (click)="onEditProduct(i)"><i
-              class="fa fa-edit"></i></a></td>
-            <td><a class="text-danger" style="cursor:pointer" (click)="onDeleteProduct(i)"><i
-                  class="fa fa-trash"></i></a></td>
-          </tr>
-        </tbody>
-      </table>
-      
-        <div   *ngIf="fetching" class="spinner-border text-success text-center" role="status">
-          <span class="sr-only">Loading...</span> 
+      </table> -->
+      <div *ngIf="!fetching" class="table-wrapper-scroll-y my-custom-scrollbar">
+        <div class="row" *ngFor="let product of products; index as i" style="text-align:center;width:103%;padding-bottom:5px">
+          <div class="col-1">{{i+1}}.</div>
+          <div class="col-2">{{product.id}}</div>
+          <div class="col-3">{{product.name}}</div>
+
+          <div class="col-2 ">{{product.price}}</div>
+          <div class="col-2 "><a class="text-primary" style="cursor:pointer" (click)="onEditProduct(i)"><i
+                class="fa fa-edit"></i></a></div>
+          <div class="col-2 "><a class="text-danger" style="cursor:pointer" (click)="onDeleteProduct(i)"><i
+                class="fa fa-trash"></i></a></div>
+
         </div>
-        <div  *ngIf="fetching">Fetching products...</div>
-        
-      
+        <!-- <table class="table" >
+          <tbody *ngIf="!fetching">
+            <tr *ngFor="let product of products; index as i">
+              <td style="width:50px">{{i+1}}.</td>
+              <td style="width:10px">{{product.id}}</td>
+              <td style="width:250px">{{product.name}}</td>
+              <td style="width:300px">{{product.price}}</td>
+              <td style="width:70px"><a class="text-primary" style="cursor:pointer" (click)="onEditProduct(i)"><i
+                    class="fa fa-edit"></i></a></td>
+              <td style="width:70px"><a class="text-danger" style="cursor:pointer" (click)="onDeleteProduct(i)"><i
+                    class="fa fa-trash"></i></a></td>
+            </tr>
+          </tbody>
+        </table> -->
+      </div>
+      <div style="text-align:center;margin-top:5px">
+        <button *ngIf="!fetching" class="btn btn-danger" (click)="onAllDeleteProduct(name)">Delete All </button>
+      </div>
+      <div *ngIf="fetching" class="spinner-border text-success text-center" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <div *ngIf="fetching">Fetching products...</div>
+
+
       <!-- <button type="button" class="btn btn-outline-secondary mr-2" placement="top"
         ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." popoverTitle="Popover on top">
         Popover on top

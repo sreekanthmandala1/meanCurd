@@ -3,3 +3,14 @@
     background-color: #f169b4;
     border-color: #800040;
   }
+
+  .my-custom-scrollbar {
+    position: relative;
+    height: 230px;
+    overflow: auto;
+    
+    }
+    .table-wrapper-scroll-y {
+    display: block;
+    
+    }
