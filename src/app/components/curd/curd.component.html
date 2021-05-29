@@ -1,0 +1,90 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-12" style="text-align:center">
+      <h3>Manage Products</h3>
+      <p>
+        <ngb-alert type="custom" [dismissible]="false"><strong>Whoa!</strong> This is a custom alert.</ngb-alert>
+      </p>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <h3 style="text-align:center">Add Products</h3>
+      <div class="form">
+        <div class="form-floating mb-3 form-group">
+          <input type="text" class="form-control" placeholder="Id" id="id" #id>
+          <label for="floatingInput">Product Id</label>
+        </div>
+        <div class="form-floating mb-3 form-group">
+          <input type="text" class="form-control" placeholder="Name" id="name" #name>
+          <label for="floatingPassword">Product Name</label>
+        </div>
+        <div class="form-floating mb-3 form-group">
+          <input type="number" class="form-control" placeholder="Price" id="price" #price>
+          <label for="floatingPassword">Product Price</label>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button class="btn btn-primary mx-3" (click)="onAddProduct(id,name,price)">Add</button>
+            <button class="btn btn-info mx-3" (click)="onSaveProduct()">save</button>
+            <button class="btn btn-success mx-3" (click)="onFetchProduct()">Fetch</button>
+          </div>
+        </div>
+      </div>
+      <h2>{{dataTitle | async}}</h2>
+    </div>
+    <div class="col-md-6" style="text-align:center">
+      <table class="table">
+        <thead style="background-color: rgb(253, 175, 7);color:white">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="!fetching">
+          <tr *ngFor="let product of products; index as i">
+            <th>{{i+1}}.</th>
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.price}}</td>
+            <td><a class="text-danger" style="cursor:pointer" (click)="onDeleteProduct(i)"><i
+                  class="fa fa-trash"></i></a></td>
+          </tr>
+        </tbody>
+      </table>
+      
+        <div   *ngIf="fetching" class="spinner-border text-success text-center" role="status">
+          <span class="sr-only">Loading...</span> 
+        </div>
+        <div  *ngIf="fetching">Fetching products...</div>
+        
+      
+      <!-- <button type="button" class="btn btn-outline-secondary mr-2" placement="top"
+        ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." popoverTitle="Popover on top">
+        Popover on top
+      </button> -->
+    </div>
+  </div>
+  <ngb-accordion [closeOthers]="true" activeIds="static-1">
+    <ngb-panel id="static-1" title="Simple">
+      <ng-template ngbPanelContent>
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon
+        officia
+        aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon
+        tempor,
+        sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+        helvetica,
+        craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo.
+        Leggings
+        occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them
+        accusamus
+        labore sustainable VHS.
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
+</div>
