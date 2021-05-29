@@ -27,7 +27,7 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <button class="btn btn-primary mx-3" (click)="onAddProduct(id,name,price)">Add</button>
+            <button class="btn btn-primary mx-3" (click)="onAddProduct(id,name,price)">{{editMode? 'Update': 'Add'}}</button>
             <button class="btn btn-info mx-3" (click)="onSaveProduct()">save</button>
             <button class="btn btn-success mx-3" (click)="onFetchProduct()">Fetch</button>
           </div>
@@ -43,6 +43,7 @@
             <th scope="col">Id</th>
             <th scope="col">Name</th>
             <th scope="col">Price</th>
+            <th scope="col">Edit</th>
             <th scope="col">Delete</th>
           </tr>
         </thead>
@@ -52,6 +53,8 @@
             <td>{{product.id}}</td>
             <td>{{product.name}}</td>
             <td>{{product.price}}</td>
+            <td><a class="text-primary" style="cursor:pointer" (click)="onEditProduct(i)"><i
+              class="fa fa-edit"></i></a></td>
             <td><a class="text-danger" style="cursor:pointer" (click)="onDeleteProduct(i)"><i
                   class="fa fa-trash"></i></a></td>
           </tr>

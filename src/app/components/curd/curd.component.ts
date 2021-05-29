@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { UxProductsService } from 'src/app/services/ux-products.service';
 
 
@@ -12,7 +12,11 @@ import { UxProductsService } from 'src/app/services/ux-products.service';
 export class CurdComponent implements OnInit {
     dataTitle = this.uxProducts.getDataTitle();
    fetching = false;
-  
+   editMode:boolean = false;
+   editIndex:any;
+   @ViewChild('id') id:any=ElementRef;
+   @ViewChild('name') name:any=ElementRef;
+   @ViewChild('price') price:any=ElementRef;
   constructor(private uxProducts: UxProductsService) {
     
    }
@@ -47,11 +51,24 @@ export class CurdComponent implements OnInit {
   ];
 
   onAddProduct(id:any , name:any , price:any){
-    this.products.push({
-      id:id.value,
-      name:name.value,
-      price:price.value
-    })
+    if(this.editMode){
+      this.products[this.editIndex] = {
+          id:id.value,
+          name:name.value,
+          price:price.value
+      }
+      this.editMode = false;
+      this.id.nativeElement.value = '';
+    this.name.nativeElement.value = '';
+    this.price.nativeElement.value = '';
+    }else{
+      this.products.push({
+        id:id.value,
+        name:name.value,
+        price:price.value
+      })
+    }
+    this.onSaveProduct()
   }
 
   onSaveProduct(){
@@ -76,10 +93,19 @@ export class CurdComponent implements OnInit {
     )
   }
 
-  onDeleteProduct(id:any){
+  onDeleteProduct(id:number){
     if(confirm('Do you want to delete this product?')){
       this.products.splice(id,1);
+      this.onSaveProduct()
     }
-    
+  }
+
+  onEditProduct(index:number){
+    this.editMode = true;
+    this.editIndex = index;
+    console.log(this.products[index].id)
+    this.id.nativeElement.value = this.products[index].id;
+    this.name.nativeElement.value = this.products[index].name;
+    this.price.nativeElement.value = this.products[index].price;
   }
 }
