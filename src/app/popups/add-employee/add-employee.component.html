@@ -1,0 +1,64 @@
+<h3>Add Employee</h3>
+<form [formGroup]="empForm" (ngSubmit)="onEmpSubmit()">
+  <mat-form-field appearance="outline" [style.width.%]=100>
+    <mat-label>Enter Name</mat-label>
+    <input matInput placeholder="Ex:john" formControlName="name">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <mat-hint>Hint</mat-hint>
+  </mat-form-field> 
+  <mat-form-field appearance="outline" [style.width.%]=100>
+    <mat-label>Enter position</mat-label>
+    <input matInput placeholder="Ex:john" formControlName="position">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <mat-hint>Hint</mat-hint>
+  </mat-form-field> 
+  <!-- <mat-form-field appearance="fill">
+    <mat-label>Department</mat-label>
+    <mat-select   name="food" formControlName="department">
+      <mat-option *ngFor="let food of foods" [value]="food.value">
+        {{food.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field> -->
+  <mat-dialog-actions>
+    <button class="btn btn-outline-danger" mat-button mat-dialog-close>Cancel</button>
+    <button class="btn btn-outline-success" mat-button  cdkFocusInitial>Submit</button>
+  </mat-dialog-actions> 
+  <!-- <div class="modal-body">
+    <div class="form-group">
+      <label>Enter Name</label>
+      <input class="form-control" formControlName="name">
+    </div>
+    <div class="form-group">
+      <label>Enter position</label>
+      <input class="form-control" formControlName="position">
+    </div>
+    <div class="form-group">
+      <label>Enter department</label>
+      <select class="custom-select" formControlName="department">
+        <option value="design">Design</option>
+        <option value="development">Development</option>
+      </select>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-outline-danger" (click)="onCancel()">Cancel</button>
+    <button class="btn btn-outline-success">Submit</button>
+  </div> -->
+<!-- <mat-form-field appearance="outline" [style.width.%]=100>
+  <mat-label>Enter Name</mat-label>
+  <input matInput placeholder="Ex:john" >
+  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  <mat-hint>Hint</mat-hint>
+</mat-form-field> -->
+</form>
+<!-- <label>Enter Name</label>
+<input class="form-control mb-3" placeholder="Ex:John">
+<label>Enter Position</label>
+<input class="form-control mb-3" placeholder="Ex:Full Stack Developer">
+<label>Enter Department</label>
+<input class="form-control mb-3" placeholder="Ex:Development">
+<mat-dialog-actions>
+  <button class="btn btn-outline-danger" mat-button mat-dialog-close>Cancel</button>
+  <button class="btn btn-outline-success" mat-button  cdkFocusInitial>Install</button>
+</mat-dialog-actions> -->

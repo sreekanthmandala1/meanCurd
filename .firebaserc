@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "crudangularmean"
+  },
+  "targets": {
+    "crudangularmean": {
+      "hosting": {
+        "roleBasedAuth": [
+          "crudangularmean"
+        ]
+      }
+    }
+  }
+}
