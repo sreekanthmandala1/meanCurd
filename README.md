@@ -1,3 +1,6 @@
+# ng add @angular/material
+# npm i @angular/cdk
+
 # RoleBasedAuth
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.0.
